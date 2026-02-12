@@ -24,7 +24,7 @@ function NuevoProducto( props ) {
     e.preventDefault();
     
     try {
-      const response = await fetch('http://localhost:3000/api/productos', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/productos`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('mi_token_seguro') },
         body: JSON.stringify(datosProducto)

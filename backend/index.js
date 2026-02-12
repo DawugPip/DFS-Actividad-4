@@ -4,7 +4,9 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
+const mongoURL = process.env.MONGO_URI || 'mongodb://localhost:27017/gestion_productos';
+
+app.use(cors({origin: 'dfs-actividad-4.vercel.app'}));
 app.use(express.json());
 
 // Conexión a MongoDB

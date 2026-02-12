@@ -24,7 +24,7 @@ function ListaProductos() {
         }
         
         console.log('Haciendo petición a /api/productos...');
-        const response = await fetch('http://localhost:3000/api/productos', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/productos`, {
           headers: { 'Authorization': 'Bearer ' + token }
         });
         
@@ -73,7 +73,7 @@ function ListaProductos() {
     if (!confirm("¿Estás seguro de eliminar este producto?")) return;
 
     try {
-      const response = await fetch(`http://localhost:3000/api/productos/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/productos/${id}`, {
         method: 'DELETE',
         headers: { 
           'Authorization': 'Bearer ' + localStorage.getItem('mi_token_seguro') 

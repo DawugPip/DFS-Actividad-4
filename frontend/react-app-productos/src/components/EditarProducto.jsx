@@ -33,7 +33,7 @@ function EditarProducto({ producto, alActualizar, alCerrar }) {
         e.preventDefault();
         
         try {
-            const response = await fetch(`http://localhost:3000/api/productos/${datosProducto._id || datosProducto.id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/productos/${datosProducto._id || datosProducto.id}`, {
                 method: 'PUT',
                 headers: { 
                     'Content-Type': 'application/json',
