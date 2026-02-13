@@ -24,6 +24,9 @@ jobs:
     needs: check-frontend # Solo se ejecuta si el build del frontend funcionó
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+      - name: Entrar al directorio Frontend
+        run: cd frontend/react-app-productos
       - name: Desplegar Frontend a Vercel
         uses: amondnet/vercel-action@v20
         with:
@@ -31,7 +34,6 @@ jobs:
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-args: '--prod' # Despliegue a producción
-          vercel-project-path: ./frontend/react-app-productos
 
       - name: Desplegar Backend a Render
         run: |
