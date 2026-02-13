@@ -78,9 +78,9 @@ td {
     border: none;
     cursor: pointer;
     border-radius: 5px;
-    color: black;
+    color: white;
     margin-right: 10px;
-    font-size: 1.1rem;
+    font-size: 0.8+9rem;
     padding: 5px 10px;
 }
 
@@ -91,8 +91,7 @@ td {
     border-radius: 5px;
     color: white;
     margin-right: 10px;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     padding: 5px 10px;
-    /*Disminucion del tamanio del texto de los botones*/
 
 }
