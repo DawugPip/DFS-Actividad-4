@@ -57,7 +57,7 @@ function Register() {
             
             <div className="input-group">
                 <label htmlFor="email">Correo</label>
-                <input type="text" id="email" name="email" placeholder="Ej. admin@email.com" value={credentials.email} onChange={handleChange} required />
+                <input type="email" id="email" name="email" placeholder="Ej. admin@email.com" value={credentials.email} onChange={handleChange} required />
             </div>
 
             <div className="input-group">
