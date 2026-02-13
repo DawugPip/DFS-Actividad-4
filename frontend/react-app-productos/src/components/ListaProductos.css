@@ -91,6 +91,8 @@ td {
     border-radius: 5px;
     color: white;
     margin-right: 10px;
-    font-size: 1.1rem;
+    font-size: 0.8rem;
     padding: 5px 10px;
+    /*Disminucion del tamanio del texto de los botones*/
+
 }
