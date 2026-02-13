@@ -31,7 +31,7 @@ jobs:
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-args: '--prod' # Despliegue a producción
-          working-directory: ./frontend/react-app-productos
+          vercel-project-path: ./frontend/react-app-productos
 
       - name: Desplegar Backend a Render
         run: |
