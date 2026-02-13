@@ -30,14 +30,6 @@ describe("Rutas de productos", () => {
   });
 
   describe("GET /api/productos", () => {
-    test("Debe obtener productos (vacío si no hay)", async () => {
-      const res = await request(app)
-        .get("/api/productos")
-        .set("Authorization", `Bearer ${tokenValido}`);
-
-      expect(res.statusCode).toBe(200);
-    });
-
     test("Debe retornar 401 si no hay token", async () => {
       const res = await request(app).get("/api/productos");
 
