@@ -12,5 +12,6 @@ jobs:
       - name: Instalando y probando
         run: |
           cd frontend
+          cd react-app-productos
           npm install
           npm run build
