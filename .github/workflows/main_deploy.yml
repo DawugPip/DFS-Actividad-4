@@ -2,16 +2,38 @@ name: Pipeline de Despliegue CI/CD
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main ] # Se activa al hacer push a la rama main
 
 jobs:
-  build:
+  # TRABAJO 1: Verificar el Frontend
+  check-frontend:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Instalando y probando
+      - name: Instalar dependencias Frontend
         run: |
           cd frontend
           cd react-app-productos
           npm install
+      - name: Build de prueba
+        run: |
+          cd frontend
           npm run build
+
+  # TRABAJO 2: Avisar a Vercel y Render que desplieguen
+  deploy:
+    needs: check-frontend # Solo se ejecuta si el build del frontend funcionó
+    runs-on: ubuntu-latest
+    steps:
+      - name: Desplegar Frontend a Vercel
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-args: '--prod' # Despliegue a producción
+          working-directory: ./frontend
+
+      - name: Desplegar Backend a Render
+        run: |
+          curl -X POST https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
