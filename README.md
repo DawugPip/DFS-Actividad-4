@@ -187,6 +187,9 @@ Desplegado en **Vercel**: [https://dfs-actividad-4.vercel.app](https://dfs-activ
 ### Backend
 Desplegado en **Render**: [https://dfs-actividad-4.onrender.com](https://dfs-actividad-4.onrender.com)
 
+### Base de Datos
+Desplegado en **MongoDB Atlas**: [https://www.mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)
+
 ### CI/CD
 El pipeline de GitHub Actions ([`.github/workflows/main_deploy.yml`](.github/workflows/main_deploy.yml)):
 1. Verifica el build del frontend
