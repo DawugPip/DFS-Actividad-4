@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./NuevoProducto.css"; // Crearemos este archivo
+import "./NuevoProducto.css"; // Archivo de estilos
 
 function NuevoProducto( props ) {
     const { alAgregar, alCerrar } = props;

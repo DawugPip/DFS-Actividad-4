@@ -3,10 +3,10 @@ import './Login.css'; // Mueve tu CSS aquí
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  // 1. Llamar useNavigate al nivel del componente
+  // Llamar useNavigate al nivel del componente
   const navigate = useNavigate(); 
 
-  // 1. Definimos el estado para el formulario
+  // 1. Definir el estado para el formulario
   const [credentials, setCredentials] = useState({
     email: '',
     password: ''
@@ -39,7 +39,7 @@ function Login() {
 
         alert('Login exitoso, token guardado');
 
-        // 2. Redirigir (En React puro se usa useNavigate, pero para no liarte:)
+        // 2. Redirigir
         navigate('/productos'); // Redirige a la página de productos después del login
 
       } else {
@@ -81,10 +81,6 @@ function Login() {
         </div>
 
         <button type="submit" className="login-btn">Entrar al Sistema</button>
-        
-        <div className="form-footer">
-          <a href="#">¿Olvidaste tu contraseña?</a>
-        </div>
       </form>
     </div>
   );
