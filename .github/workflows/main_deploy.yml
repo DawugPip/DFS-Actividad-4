@@ -12,12 +12,11 @@ jobs:
       - uses: actions/checkout@v3
       - name: Instalar dependencias Frontend
         run: |
-          cd frontend
-          cd react-app-productos
+          cd frontend/react-app-productos
           npm install
       - name: Build de prueba
         run: |
-          cd frontend
+          cd frontend/react-app-productos
           npm run build
 
   # TRABAJO 2: Avisar a Vercel y Render que desplieguen
@@ -32,7 +31,7 @@ jobs:
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-args: '--prod' # Despliegue a producción
-          working-directory: ./frontend
+          working-directory: ./frontend/react-app-productos
 
       - name: Desplegar Backend a Render
         run: |
