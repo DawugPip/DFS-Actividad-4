@@ -9,6 +9,8 @@ Una aplicación web completa para gestionar productos con autenticación de usua
 | Frontend | [https://dfs-actividad-4.vercel.app](https://dfs-actividad-4.vercel.app) | Interfaz de usuario |
 | Backend | [https://dfs-actividad-4.onrender.com](https://dfs-actividad-4.onrender.com) | API REST |
 
+NOTA IMPORTANTE: Debido a la naturaleza de los despliegues gratuitos, es posible que el backend se "duerma" después de un período de inactividad. Si experimentas tiempos de respuesta lentos o errores, intenta acceder nuevamente después de unos segundos para que el servicio se reactive.
+
 ## 🚀 Características
 
 - **Autenticación de usuarios** con registro e inicio de sesión seguros
