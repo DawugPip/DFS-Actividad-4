@@ -7,7 +7,7 @@ Una aplicación web completa para gestionar productos con autenticación de usua
 | Entorno | URL | Descripción |
 |---------|-----|------------|
 | Frontend | [https://dfs-actividad-4.vercel.app](https://dfs-actividad-4.vercel.app) | Interfaz de usuario |
-| Backend | [https://tu-servicio.onrender.com](https://tu-servicio.onrender.com) | API REST |
+| Backend | [https://dfs-actividad-4.onrender.com](https://dfs-actividad-4.onrender.com) | API REST |
 
 ## 🚀 Características
 
@@ -185,7 +185,7 @@ npm test
 Desplegado en **Vercel**: [https://dfs-actividad-4.vercel.app](https://dfs-actividad-4.vercel.app)
 
 ### Backend
-Desplegado en **Render**: [https://tu-servicio.onrender.com](https://tu-servicio.onrender.com)
+Desplegado en **Render**: [https://dfs-actividad-4.onrender.com](https://dfs-actividad-4.onrender.com)
 
 ### CI/CD
 El pipeline de GitHub Actions ([`.github/workflows/main_deploy.yml`](.github/workflows/main_deploy.yml)):
