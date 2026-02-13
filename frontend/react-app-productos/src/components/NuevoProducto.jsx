@@ -11,7 +11,7 @@ function NuevoProducto( props ) {
         stock: '',
     });
 
-  // 2. Función para actualizar el estado mientras el usuario escribe
+  // Función para actualizar el estado mientras el usuario escribe
     const handleChange = (e) => {
         setDatosProducto({
             ...datosProducto,
@@ -19,7 +19,7 @@ function NuevoProducto( props ) {
     });
   };
 
-  // 3. Función para enviar los datos al backend
+  // Función para enviar los datos al backend
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -37,7 +37,7 @@ function NuevoProducto( props ) {
         //Avisa a la lista que hay un nuevo producto, para que se vuelva a cargar el inventario
         alCerrar && alCerrar(); // Cerrar el formulario después de agregar
       } else {
-        const data = await response.json();  // ← Agrega esta línea
+        const data = await response.json(); 
         alert(data.message);
       }
     } catch (error) {

@@ -3,7 +3,7 @@ import './Register.css'; // Mueve tu CSS aquí
 import { useNavigate } from 'react-router-dom';
 
 function Register() {
-  // 1. Llamar useNavigate al nivel del componente
+  // Llamar useNavigate al nivel del componente
   const navigate = useNavigate(); 
 
   // 1. Definimos el estado para el formulario

@@ -140,8 +140,8 @@ function ListaProductos() {
                   <td>${p.precio}</td>
                   <td><span className="stock-badge">{p.stock} unid.</span></td>
                   <td>
-                    <button className="edit-btn" onClick={() => setModalEditar(p)}>✏️</button>
-                    <button className="delete-btn" onClick={() => eliminarProducto(p._id)}>🗑️</button>
+                    <button className="edit-btn" onClick={() => setModalEditar(p)}>Editar</button>
+                    <button className="delete-btn" onClick={() => eliminarProducto(p._id)}>Borrar</button>
                   </td>
                 </tr>
               ))}

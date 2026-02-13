@@ -73,10 +73,22 @@ td {
     cursor: pointer;
 }
 
-.edit-btn, .delete-btn {
-    background: none;
+.edit-btn {
+    background: yellow;
     border: none;
     cursor: pointer;
+    border-radius: 5px;
+    color: black;
+    margin-right: 10px;
+    font-size: 1.1rem;
+}
+
+.edit-btn, .delete-btn {
+    background: red;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
     margin-right: 10px;
     font-size: 1.1rem;
 }
