@@ -81,9 +81,10 @@ td {
     color: black;
     margin-right: 10px;
     font-size: 1.1rem;
+    padding: 5px 10px;
 }
 
-.edit-btn, .delete-btn {
+.delete-btn {
     background: red;
     border: none;
     cursor: pointer;
@@ -91,4 +92,5 @@ td {
     color: white;
     margin-right: 10px;
     font-size: 1.1rem;
+    padding: 5px 10px;
 }
