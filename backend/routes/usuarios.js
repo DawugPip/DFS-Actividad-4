@@ -3,6 +3,7 @@ const router = express.Router();
 const { Usuario } = require('../shema');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { enviarCorreoBienvenida } = require('./mailer'); //email
 
 router.post('/register', async (req, res) => {
   const { email, password } = req.body;
@@ -14,6 +15,8 @@ router.post('/register', async (req, res) => {
     const newUser = new Usuario({ email, password: hashedPassword });
     await newUser.save();
     res.status(201).json({ message: 'Usuario registrado exitosamente' });
+    // Enviar el correo sin detener la respuesta del servidor
+    enviarCorreoBienvenida(newUser.email);
   } catch (error) {
     res.status(500).json({ message: 'Error al registrar usuario', error });
   }

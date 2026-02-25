@@ -99,7 +99,7 @@ function ListaProductos() {
       </header>
 
       {/* Modal para nuevo producto */}
-      {mostrarModalNuevo && (
+      {mostrarModalNuevo && ( //Esto es como un if
         <NuevoProducto 
           alAgregar={agregarALista} 
           alCerrar={() => setMostrarModalNuevo(false)}
