@@ -3,7 +3,7 @@ const router = express.Router();
 const { Usuario } = require('../shema');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { enviarCorreoBienvenida } = require('../mailer'); //email
+const { enviarCorreoBienvenida } = require('../mailer'); // Importa la función para enviar correos
 
 router.post('/register', async (req, res) => {
   const { email, password } = req.body;
