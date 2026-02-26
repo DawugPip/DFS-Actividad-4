@@ -1,24 +1,24 @@
 const nodemailer = require('nodemailer');
 
 // 1. Configuramos quién envía el correo
+// 1. Configuramos quién envía el correo
 const transporter = nodemailer.createTransport({
-    host: "smtp-mail.outlook.com", // Servidor de Outlook
-    port: 587,
-    secure: false, // TLS
+    service: 'gmail', // Puedes usar 'gmail' o un servidor SMTP
     auth: {
         user: process.env.EMAIL_USER, // Tu correo
-        pass: process.env.EMAIL_PASS  // Tu contraseña normal (o de aplicación si tienes 2FA)
-    },
-    tls: {
-        ciphers: 'SSLv3'
+        pass: process.env.EMAIL_PASS  // Tu "Contraseña de aplicación" (no tu clave normal)
     }
 });
 
 // 2. Función para enviar el correo
 const enviarCorreoBienvenida = async (emailUsuario) => {
     try {
+        // Verificar conexión primero
+        await transporter.verify();
+        console.log("Conexión con SMTP verificada");
+        
         await transporter.sendMail({
-            from: '"Gestión de Productos 📦" <pur@gmail.com>',
+            from: `"Gestión de Productos" <${process.env.EMAIL_USER}>`,
             to: emailUsuario,
             subject: "¡Bienvenido al sistema!",
             html: `<h1>Hola ${emailUsuario}</h1><p>Tu cuenta ha sido creada exitosamente.</p>`
