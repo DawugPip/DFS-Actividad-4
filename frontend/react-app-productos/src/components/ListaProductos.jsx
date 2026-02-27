@@ -4,12 +4,25 @@ import "./ListaProductos.css";
 import NuevoProducto from "./NuevoProducto.jsx";
 import EditarProducto from "./EditarProducto.jsx";
 
+//PAGOS
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import { CheckoutForm } from './CheckoutForm'; // El componente que creamos antes
+// 1. Inicializa Stripe fuera del componente con tu LLAVE PÚBLICA
+const stripePromise = loadStripe('pk_test_51T4tP3PkMd9SX7esNuhteF9FLKUregfbS8lKpu3MaendPWgIvJxwLlR9E6Ae63hEOvRGtaXPHvyZ04BENnDtocDV00dGsdKxaD');
+
 function ListaProductos() {
   const [productos, setProductos] = useState([]);
   const [mostrarModalNuevo, setMostrarModalNuevo] = useState(false);
   const [cargando, setCargando] = useState(true);
   const [modalEditar, setModalEditar] = useState(null);
   const navigate = useNavigate();
+
+  //PAGOS
+  // Estados nuevos para el pago
+  const [clientSecret, setClientSecret] = useState("");
+  const [mostrarModalPago, setMostrarModalPago] = useState(false);
+  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
   useEffect(() => {
     async function cargarProductos() {
@@ -90,6 +103,35 @@ function ListaProductos() {
   };
 
   if (cargando) return <div className="loader">Cargando inventario...</div>;
+  
+  //PAGOS
+  // 2. La lógica de iniciarPago
+    const iniciarPago = async (producto) => {
+        setProductoSeleccionado(producto);
+        
+        try {
+            // Llamamos a tu backend para generar la "intención de pago"
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/crear-intento-pago`, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('mi_token_seguro')
+                },
+                body: JSON.stringify({ productoId: producto._id || producto.id })
+            });
+
+            const data = await response.json();
+            
+            if (response.ok) {
+                setClientSecret(data.clientSecret);
+                setMostrarModalPago(true); // Abrimos la ventana de pago
+            } else {
+                alert("No se pudo iniciar el pago: " + data.error);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
 
   return (
     <div className="dashboard-container">
@@ -97,6 +139,34 @@ function ListaProductos() {
         <h1>Gestión de Inventario</h1>
         <button className="add-btn" onClick={() => setMostrarModalNuevo(true)}>+ Nuevo Producto</button>
       </header>
+
+      {/* PAGOS */}
+  {/* 3. El Modal de Pago (Renderizado condicional) */}
+            {mostrarModalPago && clientSecret && (
+                <div className="modal-overlay">
+                    <div className="newProduct-container">
+                        <h2>Pagar {productoSeleccionado.nombre}</h2>
+                        <p>Total a pagar: <strong>${productoSeleccionado.precio} MXN</strong></p>
+                        
+                        {/* El componente Elements debe envolver al formulario de Stripe */}
+                        <Elements stripe={stripePromise} options={{ clientSecret }}>
+                            <CheckoutForm 
+                                clientSecret={clientSecret} 
+                                alTerminar={() => setMostrarModalPago(false)} 
+                            />
+                        </Elements>
+                        
+                        <button 
+                            className="cancel-btn" 
+                            style={{marginTop: '10px'}} 
+                            onClick={() => setMostrarModalPago(false)}
+                        >
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+            )}
+               
 
       {/* Modal para nuevo producto */}
       {mostrarModalNuevo && ( //Esto es como un if
@@ -142,6 +212,7 @@ function ListaProductos() {
                   <td>
                     <button className="edit-btn" onClick={() => setModalEditar(p)}>Editar</button>
                     <button className="delete-btn" onClick={() => eliminarProducto(p._id)}>Borrar</button>
+                    <button className="buy-btn" onClick={() => iniciarPago(p)}>Comprar</button>
                   </td>
                 </tr>
               ))}

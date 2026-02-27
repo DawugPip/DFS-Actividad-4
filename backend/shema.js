@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { update } = require('moongose/models/user_model');
 
 const ProductosSchema = new mongoose.Schema({
   nombre: { type: String, required: true },
